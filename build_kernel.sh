@@ -78,6 +78,8 @@ if [ "$ENABLE_KSU" -eq 1 ]; then
     echo "[*] Downloading and running ReSukiSU remote setup script..."
     curl -LSs "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash
     sed -i 's/^REPO_NAME := ReSukiSU$/REPO_NAME := LingLuo/' KernelSU/kernel/Kbuild
+    git -C KernelSU add kernel/Kbuild
+    git -C KernelSU -c user.email="build@local" -c user.name="Builder" commit -m "Rename REPO_NAME to LingLuo" >/dev/null 2>&1 || true
     echo "[+] KernelSU setup finished."
 fi
 
